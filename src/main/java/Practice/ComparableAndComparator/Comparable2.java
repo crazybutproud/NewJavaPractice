@@ -11,7 +11,7 @@ public class Comparable2 {
         Employee employee1 = new Employee(123, "Anna", "Hanna", 50_000);
         Employee employee2 = new Employee(22, "Licha", "Chicha", 150_000);
         Employee employee3 = new Employee(36, "Vladimir", "Lot", 10_000);
-        Employee employee4 = new Employee(47, "Elena", "Chapman", 44_000);
+        Employee employee4 = new Employee(47, "Anna", "Chapman", 44_000);
         Employee employee5 = new Employee(59, "Viktor", "Vinnikov", 1_000);
 
         list.add(employee1);
@@ -32,7 +32,7 @@ public class Comparable2 {
 }
 
 
-class Employee implements Comparable<Employee> {
+class Employee implements Comparable<Employee> { //интерфейс использует естественный порядок
     int id;
     String name;
     String surname;
@@ -56,13 +56,34 @@ class Employee implements Comparable<Employee> {
     }
 
     @Override
-    public int compareTo(Employee anotherEmp) { //метод для сравнения по id
-        if (this.id == anotherEmp.id) {
-            return 0;
-        } else if (this.id < anotherEmp.id) {
-            return -1;
-        } else {
-            return 1;
+    public int compareTo(Employee anotherEmp) { //метод для сравнения
+        //первый вариант
+        //по id
+
+//        if (this.id == anotherEmp.id) {
+//            return 0;
+//        } else if (this.id < anotherEmp.id) {
+//            return -1;
+//        } else {
+//            return 1;
+//        }
+        //второй вариант
+
+//        return this.id-anotherEmp.id;
+
+        //третий вариант
+        //возможность использовать метод compareTo класса обертки, если сделать переменную Integer(!!!),а не int
+
+//        return this.id.compareTo(anotherEmp.id);
+        //возможно заменить в таком варианте Integer на String, и сравнивать по строкам
+
+        //Четвертый вариант
+        //проверка по имени. Если имя одинаковое, проверка по фамилии
+
+        int res = this.name.compareTo(anotherEmp.name);
+        if (res == 0) {
+            res = this.surname.compareTo(anotherEmp.surname);
         }
+        return res;
     }
 }
