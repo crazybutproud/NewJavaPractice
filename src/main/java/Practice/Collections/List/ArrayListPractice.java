@@ -2,7 +2,7 @@ package Practice.Collections.List;
 
 import java.util.ArrayList;
 
-public class ArrayListPractice {
+public class ArrayListPractice { //хорош при частом использовании метода get. но подходит под многие задачи
     public static void main(String[] args) {
         ArrayList<String> al = new ArrayList<>();
         al.add("А");
