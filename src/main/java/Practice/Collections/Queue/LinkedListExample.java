@@ -3,7 +3,7 @@ package Practice.Collections.Queue;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class LinkedListExample { //использование как очередь
+public class LinkedListExample { //использование как очередь(FIFO/LIFO)
     public static void main(String[] args) {
         Queue<String> stringQueue = new LinkedList<>();
         stringQueue.add("Anna"); //добавялет элемент в конец очереди
