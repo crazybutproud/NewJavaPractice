@@ -14,14 +14,14 @@ public class Car { //внешний класс
 
     @Override
     public String toString() {
-        return "Car{" +
+        return "Car2{" +
                 "colour='" + colour + '\'' +
                 ", doorCount=" + doorCount +
                 ", engine=" + engine +
                 '}';
     }
 
-    public static class Engine { // static nested class
+    public static class Engine { // static nested class(не привязан к классу CAR)
         int horsePower;
 
         public Engine(int horsePower) {
@@ -30,7 +30,7 @@ public class Car { //внешний класс
 
         @Override
         public String toString() {
-            return "Engine{" +
+            return "Engine2{" +
                     "horsePower=" + horsePower +
                     '}';
         }
