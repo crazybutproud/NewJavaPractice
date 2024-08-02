@@ -1,8 +1,6 @@
 package Practice.JUnit.User;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class User {
     private int id;
@@ -75,4 +73,41 @@ public class User {
                 ", sex='" + sex + '\'' +
                 '}';
     }
+
+    public static List<User> getAllUsers(){ // Формировать список всех пользователей
+        return new ArrayList<>(allUsers.values());
+    }
+
+    public static List<User> getAllUsers(Sex sex){ // Формировать список пользователей по полу(MALE/FEMALE).
+        List<User> listAllUsers = new ArrayList<>();
+        for (User user : allUsers.values()){
+            if (user.sex == sex){
+                listAllUsers.add(user);
+            }
+        }
+        return listAllUsers;
+    }
+    public static int getHowManyUsers(){ // Возвращать количество пользователей в общем списке
+        return allUsers.size();
+    }
+
+    public static int getHowManyUsers(Sex sex){ // Посчитать количество по признаку пола пользователя.
+        return getAllUsers(sex).size();
+    }
+    public static int getAllAgeUsers(){ // Посчитать общую сумму по возрасту пользователей, так же учесть по признаку пола
+        int countAge = 0;
+        for (User user : allUsers.values()){
+            countAge += user.age;
+        }
+        return countAge;
+    }
+
+    public static int getAllAgeUsers(Sex sex){ // Возраст пользователей по запрашиваемому полу
+        int countAge = 0;
+        for (User user : getAllUsers(sex)){
+            countAge += user.age;
+        }
+        return countAge;
+    }
+
 }
