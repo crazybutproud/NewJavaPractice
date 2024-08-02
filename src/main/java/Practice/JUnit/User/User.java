@@ -8,11 +8,11 @@ public class User {
     private int id;
     private String name;
     private int age;
-    private String sex;
+    private Sex sex;
     private static Map<Integer, User> allUsers;
     private static int countId = 0;
 
-    public User(int id, String name, int age, String sex) {
+    public User(int id, String name, int age, Sex sex) {
         if (allUsers == null){
             allUsers = new HashMap<>();
         }
@@ -40,7 +40,7 @@ public class User {
         return age;
     }
 
-    public String getSex() {
+    public Sex getSex() {
         return sex;
     }
 
