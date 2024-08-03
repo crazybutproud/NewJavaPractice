@@ -10,7 +10,7 @@ public class User {
     private static Map<Integer, User> allUsers;
     private static int countId = 0;
 
-    public User(int id, String name, int age, Sex sex) {
+    public User( String name, int age, Sex sex) {
         if (allUsers == null){
             allUsers = new HashMap<>();
         }
@@ -103,11 +103,20 @@ public class User {
     }
 
     public static int getAllAgeUsers(Sex sex){ // Возраст пользователей по запрашиваемому полу
+
         int countAge = 0;
         for (User user : getAllUsers(sex)){
             countAge += user.age;
         }
         return countAge;
+    }
+
+    public static int getAverageAgeOfAllUsers(){ // Посчитать средний возраст
+        return getAllAgeUsers() / getHowManyUsers();
+    }
+
+    public static int getAverageAgeOfAllUsers(Sex sex){ // Посчитать средний возраст по признаку пола
+        return getAllAgeUsers(sex) / getHowManyUsers(sex);
     }
 
 }
