@@ -2,20 +2,26 @@ package Practice.JUnit.User;
 
 import junit.framework.TestCase;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserTest extends TestCase {
+    private User user;
+    private User user1;
+    private User user2;
+
+    @Before
+    public void setUp() throws Exception {
+        user = new User("Евгений", 35, Sex.MALE);
+        user1 = new User("Марина", 34, Sex.FEMALE);
+        user2 = new User("Алина", 7, Sex.FEMALE);
+    }
 
     @Test
     public void testGetAllUsers() {
-        //создаем тестовые данные
-        User user = new User("Евгений", 35, Sex.MALE);
-        User user1 = new User("Марина", 34, Sex.FEMALE);
-        User user2 = new User("Алина", 7, Sex.FEMALE);
-
         //создаем список expected и заполняем его данными нашего метода
         List<User> expected = User.getAllUsers();
 
@@ -39,10 +45,6 @@ public class UserTest extends TestCase {
     }
 
     public void testTestGetAllUsers_MALE() {
-        User user = new User("Евгений", 35, Sex.MALE);
-        User user1 = new User("Марина", 34, Sex.FEMALE);
-        User user2 = new User("Алина", 7, Sex.FEMALE);
-
         List<User> expected = User.getAllUsers(Sex.MALE);
 
         List<User> actual = new ArrayList<>();
@@ -50,6 +52,7 @@ public class UserTest extends TestCase {
 
         Assert.assertEquals(expected, actual);
     }
+
     @Test
     public void getAllUsers_MALE_NO_NULL() {
         //добавим проверку на null
@@ -58,10 +61,6 @@ public class UserTest extends TestCase {
     }
 
     public void testTestGetAllUsers_FEMALE() {
-        User user = new User("Евгений", 35, Sex.MALE);
-        User user1 = new User("Марина", 34, Sex.FEMALE);
-        User user2 = new User("Алина", 7, Sex.FEMALE);
-
         List<User> expected = User.getAllUsers(Sex.FEMALE);
 
         List<User> actual = new ArrayList<>();
@@ -70,6 +69,7 @@ public class UserTest extends TestCase {
 
         Assert.assertEquals(expected, actual);
     }
+
     @Test
     public void getAllUsers_FEMALE_NO_NULL() {
         //добавим проверку на null
@@ -79,29 +79,51 @@ public class UserTest extends TestCase {
 
     @Test
     public void testGetHowManyUsers() {
-        User user = new User("Евгений", 35, Sex.MALE);
-        User user1 = new User("Марина", 34, Sex.FEMALE);
-        User user2 = new User("Алина", 7, Sex.FEMALE);
-
         int expected = User.getHowManyUsers();
 
         int actual = 3;
 
-        Assert.assertEquals(expected,actual);
+        Assert.assertEquals(expected, actual);
     }
 
-    public void testTestGetHowManyUsers() {
+    @Test
+    public void testGetHowManyUsers_MALE() {
+        int expected = User.getHowManyUsers(Sex.MALE);
+
+        int actual = 1;
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetHowManyUsers_FEMALE() {
+        int expected = User.getHowManyUsers(Sex.FEMALE);
+
+        int actual = 2;
+
+        Assert.assertEquals(expected, actual);
     }
 
     public void testGetAllAgeUsers() {
+        int expected = User.getAllAgeUsers();
+
+        int actual = 35 + 34 + 7;
+
+        Assert.assertEquals(expected, actual);
     }
 
-    public void testTestGetAllAgeUsers() {
-    }
+    public void testGetAllAgeUsers_MALE() {
+        int expected = User.getAllAgeUsers(Sex.MALE);
 
-    public void testGetAverageAgeOfAllUsers() {
-    }
+        int actual = 35;
 
-    public void testTestGetAverageAgeOfAllUsers() {
+        Assert.assertEquals(expected, actual);
+    }
+    public void testGetAllAgeUsers_FEMALE() {
+        int expected = User.getAllAgeUsers(Sex.FEMALE);
+
+        int actual = 34 + 7;
+
+        Assert.assertEquals(expected, actual);
     }
 }
