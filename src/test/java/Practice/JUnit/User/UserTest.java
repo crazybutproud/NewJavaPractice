@@ -43,7 +43,7 @@ public class UserTest extends TestCase {
     }
 
     @Test
-    public void getAllUsers_NO_NULL() {
+    public void testGetAllUsers_NO_NULL() {
         //добавим проверку на null
         List<User> expected = User.getAllUsers();
         Assert.assertNotNull(expected);
@@ -59,7 +59,7 @@ public class UserTest extends TestCase {
     }
 
     @Test
-    public void getAllUsers_MALE_NO_NULL() {
+    public void testGetAllUsers_MALE_NO_NULL() {
         //добавим проверку на null
         List<User> expected = User.getAllUsers(Sex.MALE);
         Assert.assertNotNull(expected);
@@ -76,7 +76,7 @@ public class UserTest extends TestCase {
     }
 
     @Test
-    public void getAllUsers_FEMALE_NO_NULL() {
+    public void testGetAllUsers_FEMALE_NO_NULL() {
         //добавим проверку на null
         List<User> expected = User.getAllUsers(Sex.FEMALE);
         Assert.assertNotNull(expected);
@@ -133,7 +133,7 @@ public class UserTest extends TestCase {
     }
 
     @Test
-    public void newUser_EMPTY_NAME() {
+    public void testNewUser_EMPTY_NAME() {
         for (User user : User.getAllUsers()){
             if (user.getName() != null && user.getName().isEmpty()) {
                 Assert.fail("Попытка создания пользователя с пустым именем");
@@ -142,7 +142,7 @@ public class UserTest extends TestCase {
     }
 
     @Test
-    public void newUser_AGE_ZERO() {
+    public void testNewUser_AGE_ZERO() {
         for (User user : User.getAllUsers()) {
             if (user.getAge() <= 0) {
                 Assert.fail("Попытка создания пользователя c не допустимым возрастом");
@@ -151,7 +151,7 @@ public class UserTest extends TestCase {
     }
 
     @Test
-    public void newUser_SEX_NO_NULL() {
+    public void testNewUser_SEX_NO_NULL() {
         for (User user : User.getAllUsers()) {
             if (user.getSex() == null) {
                 Assert.fail("Попытка создания пользователя с указанием пола = null");
