@@ -10,15 +10,17 @@ public class User {
     private static Map<Integer, User> allUsers = new HashMap<>();
     private static int countId = 0;
 
-    public User( String name, int age, Sex sex) {
-        this.name = name;
-        this.age = age;
-        this.sex = sex;
+    public User(String name, int age, Sex sex) {
+        if (name != null && !name.isEmpty() && age > 0 && sex != null) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
 
-        if (!hasUser()){
-            countId++;
-            this.id = countId;
-            allUsers.put(id, this);
+            if (!hasUser()) {
+                countId++;
+                this.id = countId;
+                allUsers.put(id, this);
+            }
         }
     }
 
@@ -51,9 +53,9 @@ public class User {
         return Objects.hash(name, age, sex);
     }
 
-    private boolean hasUser(){
-        for (User user : allUsers.values()){
-            if (user.equals(this) && user.hashCode() == this.hashCode()){
+    private boolean hasUser() {
+        for (User user : allUsers.values()) {
+            if (user.equals(this) && user.hashCode() == this.hashCode()) {
                 return true;
             }
         }
@@ -70,49 +72,54 @@ public class User {
                 '}';
     }
 
-    public static List<User> getAllUsers(){ // Формировать список всех пользователей
+    public static List<User> getAllUsers() { // Формировать список всех пользователей
         return new ArrayList<>(allUsers.values());
     }
 
-    public static List<User> getAllUsers(Sex sex){ // Формировать список пользователей по полу(MALE/FEMALE).
+    public static List<User> getAllUsers(Sex sex) { // Формировать список пользователей по полу(MALE/FEMALE).
         List<User> listAllUsers = new ArrayList<>();
-        for (User user : allUsers.values()){
-            if (user.sex == sex){
+        for (User user : allUsers.values()) {
+            if (user.sex == sex) {
                 listAllUsers.add(user);
             }
         }
         return listAllUsers;
     }
-    public static int getHowManyUsers(){ // Возвращать количество пользователей в общем списке
+
+    public static int getHowManyUsers() { // Возвращать количество пользователей в общем списке
         return allUsers.size();
     }
 
-    public static int getHowManyUsers(Sex sex){ // Посчитать количество по признаку пола пользователя.
+    public static int getHowManyUsers(Sex sex) { // Посчитать количество по признаку пола пользователя.
         return getAllUsers(sex).size();
     }
-    public static int getAllAgeUsers(){ // Посчитать общую сумму по возрасту пользователей, так же учесть по признаку пола
+
+    public static int getAllAgeUsers() { // Посчитать общую сумму по возрасту пользователей, так же учесть по признаку пола
         int countAge = 0;
-        for (User user : allUsers.values()){
+        for (User user : allUsers.values()) {
             countAge += user.age;
         }
         return countAge;
     }
 
-    public static int getAllAgeUsers(Sex sex){ // Возраст пользователей по запрашиваемому полу
+    public static int getAllAgeUsers(Sex sex) { // Возраст пользователей по запрашиваемому полу
 
         int countAge = 0;
-        for (User user : getAllUsers(sex)){
+        for (User user : getAllUsers(sex)) {
             countAge += user.age;
         }
         return countAge;
     }
 
-    public static int getAverageAgeOfAllUsers(){ // Посчитать средний возраст
+    public static int getAverageAgeOfAllUsers() { // Посчитать средний возраст
         return getAllAgeUsers() / getHowManyUsers();
     }
 
-    public static int getAverageAgeOfAllUsers(Sex sex){ // Посчитать средний возраст по признаку пола
+    public static int getAverageAgeOfAllUsers(Sex sex) { // Посчитать средний возраст по признаку пола
         return getAllAgeUsers(sex) / getHowManyUsers(sex);
+    }
+    public static void newUser() {
+
     }
 
 }
